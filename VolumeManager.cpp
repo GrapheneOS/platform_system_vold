@@ -149,7 +149,7 @@ int VolumeManager::updateVirtualDisk() {
 
             auto disk = new android::vold::Disk(
                 "virtual", buf.st_rdev, "virtual",
-                android::vold::Disk::Flags::kAdoptable | android::vold::Disk::Flags::kSd);
+                android::vold::Disk::Flags::kSd);
             mVirtualDisk = std::shared_ptr<android::vold::Disk>(disk);
             handleDiskAdded(mVirtualDisk);
         }

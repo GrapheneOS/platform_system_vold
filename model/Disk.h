@@ -42,8 +42,6 @@ class Disk {
     virtual ~Disk();
 
     enum Flags {
-        /* Flag that disk is adoptable */
-        kAdoptable = 1 << 0,
         /* Flag that disk is considered primary when the user hasn't
          * explicitly picked a primary storage location */
         kDefaultPrimary = 1 << 1,
