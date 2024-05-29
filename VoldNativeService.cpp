@@ -140,6 +140,27 @@ status_t VoldNativeService::dump(int fd, const Vector<String16>& /* args */) {
     return NO_ERROR;
 }
 
+binder::Status VoldNativeService::checkNonCeStorageKeys(std::vector<std::string>* _aidl_return) {
+    ENFORCE_SYSTEM_OR_ROOT;
+
+    const char *dirs[] = {
+        "/data/misc/vold/user_keys/de/0",
+        "/data/unencrypted/key",
+        "/metadata/vold/metadata_encryption/key",
+    };
+
+    std::vector<std::string> res;
+
+    for (const char *dir : dirs) {
+        android::vold::KeyBuffer key_buffer;
+        if (android::vold::retrieveKey(dir, android::vold::kEmptyAuthentication, &key_buffer)) {
+            res.push_back(std::string(dir));
+        }
+    }
+    *_aidl_return = res;
+    return Ok();
+}
+
 binder::Status VoldNativeService::setListener(
         const android::sp<android::os::IVoldListener>& listener) {
     ENFORCE_SYSTEM_OR_ROOT;
