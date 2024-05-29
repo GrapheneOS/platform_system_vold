@@ -270,8 +270,6 @@ static int process_config(VolumeManager* vm, VoldConfigs* configs) {
             int flags = 0;
 
             if (entry.is_encryptable()) {
-                flags |= android::vold::Disk::Flags::kAdoptable;
-                configs->has_adoptable = true;
             }
             if (entry.fs_mgr_flags.no_emulated_sd ||
                 android::base::GetBoolProperty("vold.debug.default_primary", false)) {
