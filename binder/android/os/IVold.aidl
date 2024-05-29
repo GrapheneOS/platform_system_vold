@@ -142,6 +142,8 @@ interface IVold {
     // on failure.
     int getStorageRemainingLifetime();
 
+    @utf8InCpp String[] checkNonCeStorageKeys();
+
     const int FSTRIM_FLAG_DEEP_TRIM = 1;
 
     const int MOUNT_FLAG_PRIMARY = 1;
