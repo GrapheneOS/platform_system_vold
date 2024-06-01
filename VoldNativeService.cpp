@@ -640,7 +640,14 @@ binder::Status VoldNativeService::destroyUserStorageKeys(int32_t userId) {
     ENFORCE_SYSTEM_OR_ROOT;
     ACQUIRE_CRYPT_LOCK;
 
-    return translateBool(fscrypt_destroy_user_keys(userId));
+    return translateBool(fscrypt_destroy_user_keys(userId, true));
+}
+
+binder::Status VoldNativeService::destroyUserStorageKeys2(int32_t userId, bool evict) {
+    ENFORCE_SYSTEM_OR_ROOT;
+    ACQUIRE_CRYPT_LOCK;
+
+    return translateBool(fscrypt_destroy_user_keys(userId, evict));
 }
 
 binder::Status VoldNativeService::setCeStorageProtection(int32_t userId,
