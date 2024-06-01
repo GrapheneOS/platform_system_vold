@@ -24,7 +24,7 @@ bool fscrypt_initialize_systemwide_keys();
 bool fscrypt_init_user0();
 extern bool fscrypt_init_user0_done;
 bool fscrypt_create_user_keys(userid_t user_id, bool ephemeral);
-bool fscrypt_destroy_user_keys(userid_t user_id);
+bool fscrypt_destroy_user_keys(userid_t user_id, bool evict);
 bool fscrypt_set_ce_key_protection(userid_t user_id, const std::vector<uint8_t>& secret);
 void fscrypt_deferred_fixate_ce_keys();
 
