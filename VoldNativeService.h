@@ -166,6 +166,7 @@ class VoldNativeService : public BinderService<VoldNativeService>, public os::Bn
 
     binder::Status checkNonCeStorageKeys(std::vector<std::string>* _aidl_return) override;
     binder::Status destroyMetadataKey(const std::string& mountPointPath) override;
+    binder::Status destroySystemStorageKey() override;
 };
 
 }  // namespace vold
