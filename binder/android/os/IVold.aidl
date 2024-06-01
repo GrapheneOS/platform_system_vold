@@ -89,6 +89,7 @@ interface IVold {
 
     void createUserStorageKeys(int userId, boolean ephemeral);
     void destroyUserStorageKeys(int userId);
+    void destroyUserStorageKeys2(int userId, boolean evict);
 
     void setCeStorageProtection(int userId, @utf8InCpp String secret);
 
