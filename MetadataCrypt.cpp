@@ -482,5 +482,18 @@ bool destroy_dsu_metadata_key(const std::string& dsu_slot) {
     return android::vold::DeleteDirContentsAndDir(dsu_metadata_key_dir) == android::OK;
 }
 
+bool destroy_mountpoint_metadata_key(const std::string& path) {
+    auto rec = GetEntryForMountPoint(&fstab_default, path);
+    if (rec == nullptr) {
+        return false;
+    }
+    bool res = android::vold::destroyKey(rec->metadata_key_dir + "/key");
+    auto tmp_path = rec->metadata_key_dir + "/tmp";
+    if (pathExists(tmp_path)) {
+        res &= android::vold::destroyKey(tmp_path);
+    }
+    return res;
+}
+
 }  // namespace vold
 }  // namespace android
