@@ -981,6 +981,13 @@ binder::Status VoldNativeService::destroyMetadataKey(const std::string& mountPoi
     return translateBool(destroy_mountpoint_metadata_key(mountPointPath));
 }
 
+binder::Status VoldNativeService::destroySystemStorageKey() {
+    ENFORCE_SYSTEM_OR_ROOT;
+    ACQUIRE_CRYPT_LOCK;
+
+    return translateBool(fscrypt_destroy_system_key());
+}
+
 binder::Status VoldNativeService::getStorageSize(int64_t* storageSize) {
     ENFORCE_SYSTEM_OR_ROOT;
     return translate(GetStorageSize(storageSize));
