@@ -136,6 +136,7 @@ interface IVold {
 
     void destroyDsuMetadataKey(@utf8InCpp String dsuSlot);
     void destroyMetadataKey(@utf8InCpp String mountPointPath);
+    void destroySystemStorageKey();
 
     long getStorageSize();
 
